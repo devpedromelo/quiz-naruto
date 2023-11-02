@@ -55,6 +55,7 @@ const showQuestion = () => {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = `${questionNo}.${currentQuestion.question}`;
+    reset();
     currentQuestion.answers.forEach((e)=>{
         let btn = document.createElement("button");
         btn.classList.add("btn");
@@ -70,6 +71,7 @@ const showQuestion = () => {
             console.log(isCorrect);
             if(isCorrect){
                 btn.classList.add("correct");
+                score++;
             }else{
                 btn.classList.add("false");
             }
@@ -78,10 +80,32 @@ const showQuestion = () => {
                 if(btn.dataset.true === "true"){
                     btn.classList.add("correct");
                 }
+                btn.disabled = true;
             });
             nextBtn.style.display = "block";
         });
     });
 };
+
+nextBtn.addEventListener("click", ()=>{
+    if(currentQuestionIndex < questions.length){
+        currentQuestionIndex++;
+        if(currentQuestionIndex < questions.length){
+            showQuestion();
+        }else{
+            reset();
+            questionElement.innerHTML = `Você acertou ${score}/4 das questões.`
+        }
+    }else{
+        startQuiz()
+    }
+});
+
+const reset = () => {
+    nextBtn.style.display = 'none';
+    while(btnAnswer.firstChild){
+        btnAnswer.removeChild(btnAnswer.firstChild);
+    };
+}
 
 startQuiz()

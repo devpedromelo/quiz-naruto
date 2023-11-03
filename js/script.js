@@ -1,38 +1,38 @@
 const questions = [
     {
-        question: "Qual é o maior animal do mundo?",
+        question: "Qual o nome da besta selada dentro do Naruto?",
         answers: [
-            {text: "Tubarão", correct: "false"},
-            {text: "Baleia Azul", correct: "true"},
-            {text: "Elefante", correct: "false"},
-            {text: "Girafa", correct: "false"},
+            {text: "Shukaku ", correct: "false"},
+            {text: "Kurama", correct: "true"},
+            {text: "Son Goku", correct: "false"},
+            {text: "Utakata", correct: "false"},
         ]
     },
     {
-        question: "Qual é o menor continente do mundo?",
+        question: "Quemo é o pai do Naruto?",
         answers: [
-            {text: "Ásia", correct: "false"},
-            {text: "Ártico", correct: "false"},
-            {text: "África", correct: "false"},
-            {text: "Austrália", correct: "true"},
+            {text: "Jiraiya", correct: "false"},
+            {text: "Gai", correct: "false"},
+            {text: "Iruka", correct: "false"},
+            {text: "Minato", correct: "true"},
         ]
     },
     {
-        question: "Qual é o maior deserto do mundo?",
+        question: "No total há quantos hokages na obra?",
         answers: [
-            {text: "Kalahari", correct: "false"},
-            {text: "Gobi", correct: "false"},
-            {text: "Saara", correct: "false"},
-            {text: "Antártico", correct: "true"},
+            {text: "5", correct: "false"},
+            {text: "4", correct: "false"},
+            {text: "6", correct: "false"},
+            {text: "7", correct: "true"},
         ]
     },
     {
-        question: "Qual é o maior animal do mundo?",
+        question: "Com quem o Gaara lutou e venceu (injustamente) no primeiro torneio do anime?",
         answers: [
-            {text: "Tubarão", correct: "false"},
-            {text: "Baleia Azul", correct: "true"},
-            {text: "Elefante", correct: "false"},
-            {text: "Girafa", correct: "false"},
+            {text: "Sasuke", correct: "false"},
+            {text: "Naruto", correct: "false"},
+            {text: "Rock Lee", correct: "true"},
+            {text: "Hinata", correct: "false"},
         ]
     },
 ];
@@ -72,15 +72,20 @@ const showQuestion = () => {
             if(isCorrect){
                 btn.classList.add("correct");
                 score++;
+                btn.style.animation = 'none'
             }else{
                 btn.classList.add("false");
+                // btn.style.color = 'white';
             }
         
             Array.from(btnAnswer.children).forEach(btn =>{
                 if(btn.dataset.true === "true"){
                     btn.classList.add("correct");
+                    btn.style.color = 'white';
                 }
                 btn.disabled = true;
+                btn.classList.add("hidebefore");
+                btn.style.hover = 'none'
             });
             nextBtn.style.display = "block";
         });

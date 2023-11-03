@@ -10,16 +10,22 @@
 }
 
 body{
-    background-color: #001e4d;
+    background-image: linear-gradient(88deg, #000000, #000000, transparent,transparent) ,url(../img/naruto-img.jpg);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 85.9vh;
+    background-color: black;
 }
 
 .app{
     background-color: #fff;
-    width: 90%;
+    width: 40%;
     max-width: 600px;
-    margin: 10px auto 0;
-    border-radius: 10px;
-    padding: 30px;
+    /* border-radius: 0px; */
+    margin: 9% auto 0px 10px;
+    padding: 20px;
+    height: 65vh;
 }
 
 .app h1{
@@ -40,18 +46,74 @@ body{
     font-weight: 600;
 }
 
-.btn{
-    background-color: #fff;
-    color: #222;
-    font-weight: 500;
+.btn {
     width: 100%;
-    border: 1px solid #222;
-    padding: 10px;
-    margin: 10px 0;
+    height: auto;
+    /* float: left; */
+    transition: .5s linear;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 19px 10px;
     text-align: left;
-    border-radius: 4px;
+    margin: 10px 5px;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+  
+  .btn:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    box-sizing: border-box;
+    transform: translateX(100%);
+  }
+  
+  .btn:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-top: 4px solid transparent;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+  }
+  
+  .btn:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .btn:hover:before {
+    border-color: #262626;
+    height: 100%;
+    transform: translateX(0);
+    transition: .3s transform linear, .3s height linear .3s;
+  }
+  
+  .btn:hover:after {
+    border-color: #262626;
+    height: 100%;
+    transform: translateX(0);
+    transition: .3s transform linear, .3s height linear .5s;
+  }
+  
+  button {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
-}
+    outline: none;
+    border: none;
+    background: transparent;
+  }
 
 .btn:hover:not([disabled]){
     background-color: #222;

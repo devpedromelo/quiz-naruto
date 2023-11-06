@@ -47,7 +47,7 @@ let score = 0;
 const startQuiz = () => {
     currentQuestionIndex = 0;
     score = 0;
-    nextBtn.innerHTML = 'Next';
+    nextBtn.children[0].innerHTML = 'Next';
     showQuestion(); 
 };
 
@@ -75,7 +75,6 @@ const showQuestion = () => {
                 btn.style.animation = 'none'
             }else{
                 btn.classList.add("false");
-                // btn.style.color = 'white';
             }
         
             Array.from(btnAnswer.children).forEach(btn =>{

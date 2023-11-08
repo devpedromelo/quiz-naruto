@@ -29,6 +29,7 @@ body{
     margin: 1% auto 0px 40px;
     padding: 30px;
     height: 95vh;
+    border-radius: 10px;
 }
 
 .app h1{

@@ -19,6 +19,7 @@ body{
     height: 97vh;
     width: 130vw;
     overflow-x: hidden;
+    overflow-y: hidden;
     background-color: black;
 }
 
@@ -195,6 +196,7 @@ button:hover::before {
 
 /*MEDIA QUERY*/
 
+/*witdh*/
 @media screen and (max-width: 900px){
     body{
         height: 100vh;
@@ -274,5 +276,69 @@ button:hover::before {
 
     .next-btn span{
         font-size: 15px;
+    }
+}
+
+/*height*/
+
+@media screen and (max-height: 750.40px){
+    
+    .app{
+        height: 90vh;
+    }
+
+    .app h1{
+        padding-bottom: 5px;
+    }
+
+    
+    .quiz h2 {
+        font-size: 17px;
+    }
+
+    .img-quiz img{
+        height: 220px;
+    }
+
+    .btn{
+        margin: 10px -7px;
+    }
+}
+
+@media screen and (max-height: 730px){
+    .app{
+        height: 95vh;
+    }
+}
+
+@media screen and (max-height: 685px){
+    body{
+        height: 120vh;
+    }
+
+    .quiz h2 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-height: 680px){
+    body{
+        height: 120vh;
+    }
+
+    .app h1{
+        padding-bottom: 0px;
+    }
+
+    .img-quiz img{
+        padding-bottom: 0px;
+    }
+
+    .btn{
+        margin: 6px -7px;
+    }
+
+    .quiz {
+        padding: 0px 0;
     }
 }

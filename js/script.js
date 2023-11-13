@@ -58,22 +58,25 @@ let questionNo = 0;
 let img = document.createElement("img");
 imgQuiz.appendChild(img);
 
-console.log(`Questions Length: ${questions.length} `);
-
 const startIndex = () => {
     let indexRandom = Math.floor(Math.random() * questions.length);
+    console.log(`Index Random: ${indexRandom}`);
 
     if(checks.includes(indexRandom) === true){
-        let newNum = indexRandom;
-        while(newNum === indexRandom){
-            newNum = Math.floor(Math.random() * questions.length);
+        let newNum = Math.floor(Math.random() * questions.length);
+        console.log(`New Random: ${newNum}`);
+        if(checks.includes(newNum) === true){
+            while(checks.includes(newNum) === true){
+                newNum = Math.floor(Math.random() * questions.length);
+            }
         }
+        console.log(`New Random: ${newNum}`);
         checks.push(newNum);
         console.log(checks);
         currentQuestionIndex = newNum;
     }else if(checks.includes(indexRandom) === false){
         checks.push(indexRandom);
-        console.log(checks);
+        console.log(`Lista Checks ${checks}`);
         currentQuestionIndex = indexRandom;
     }
 }
@@ -83,7 +86,6 @@ clearArray = () => {
         checks.splice(i);
         console.log('A array ficou vazia');
     }
-    console.log(checks);
 }
 
 const startQuiz = () => {
@@ -105,6 +107,9 @@ const showQuestion = () => {
     img.src = `./img/img${currentQuestionIndex}.jpg`;
     questionElement.innerHTML = `${questionNo}.${currentQuestion.question}`;
     reset();
+
+    currentQuestion.answers.sort((a, b) => Math.random() - 0.5);//embaralhando os índices
+
     currentQuestion.answers.forEach((e)=>{
         let btn = document.createElement("button");
         btn.classList.add("btn");
@@ -171,7 +176,7 @@ nextBtn.addEventListener("click", ()=>{
         recomecandoQuiz(btnRestart);
     }else if(checks.length < questions.length){
         showQuestion();
-        console.log(checks.length);
+        console.log(`Checks Lenght: ${checks.length}`);
     }
 });
 

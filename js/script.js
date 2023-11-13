@@ -41,8 +41,11 @@ const questions = [
     },
 ];
 
+const checks = [];
+
 const h1 = document.querySelector(".h1");
 const quizElement = document.querySelector(".quiz");
+const app = document.querySelector(".app");
 const questionElement = document.querySelector("#question");
 const btnAnswer = document.querySelector("#answer-btn");
 const nextBtn = document.querySelector("#next-btn");
@@ -50,23 +53,56 @@ const imgQuiz = document.querySelector(".img-quiz");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let questionNo = 0;
 
 let img = document.createElement("img");
-imgQuiz.appendChild(img)
+imgQuiz.appendChild(img);
+
+console.log(`Questions Length: ${questions.length} `);
+
+const startIndex = () => {
+    let indexRandom = Math.floor(Math.random() * questions.length);
+
+    if(checks.includes(indexRandom) === true){
+        let newNum = indexRandom;
+        while(newNum === indexRandom){
+            newNum = Math.floor(Math.random() * questions.length);
+        }
+        checks.push(newNum);
+        console.log(checks);
+        currentQuestionIndex = newNum;
+    }else if(checks.includes(indexRandom) === false){
+        checks.push(indexRandom);
+        console.log(checks);
+        currentQuestionIndex = indexRandom;
+    }
+}
+
+clearArray = () => {
+    for(let i = 0; i < checks.length; i++){
+        checks.splice(i);
+        console.log('A array ficou vazia');
+    }
+    console.log(checks);
+}
 
 const startQuiz = () => {
     currentQuestionIndex = 0;
     score = 0;
+    questionNo = 0;
     nextBtn.children[0].innerHTML = 'Next';
     quizElement.classList.remove("flex");
+    app.classList.remove("appPadding");
     h1.innerHTML = 'Quiz de Naruto';
+    clearArray();
     showQuestion(); 
 };
 
 const showQuestion = () => {
+    startIndex();
     let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    img.src = `./img/img${currentQuestionIndex}.jpg`
+    questionNo = questionNo + 1;
+    img.src = `./img/img${currentQuestionIndex}.jpg`;
     questionElement.innerHTML = `${questionNo}.${currentQuestion.question}`;
     reset();
     currentQuestion.answers.forEach((e)=>{
@@ -81,11 +117,10 @@ const showQuestion = () => {
 
         btn.addEventListener("click", () => {
             const isCorrect = btn.dataset.true === "true";
-            console.log(isCorrect);
             if(isCorrect){
                 btn.classList.add("correct");
                 score++;
-                btn.style.animation = 'none'
+                btn.style.animation = 'none';
             }else{
                 btn.classList.add("false");
             }
@@ -97,7 +132,7 @@ const showQuestion = () => {
                 }
                 btn.disabled = true;
                 btn.classList.add("hidebefore");
-                btn.style.hover = 'none'
+                btn.style.hover = 'none';
             });
             nextBtn.style.display = "block";
         });
@@ -105,34 +140,47 @@ const showQuestion = () => {
 };
 
 nextBtn.addEventListener("click", ()=>{
-    if(currentQuestionIndex < questions.length){
-        currentQuestionIndex++;
-        if(currentQuestionIndex < questions.length){
-            showQuestion();
-        }else{
-            reset()
-            quizElement.classList.add("flex");
-            questionElement.innerHTML = `Você acertou ${score}/4 das questões.`;
-            if(score <=1 ){
-                img.src = './img/score-baixo.jpg';
-                h1.innerHTML = 'Errou feio, tente novamente!';
-            }else if(score == 2){
-                img.src = './img/score-metade.png';
-                h1.innerHTML = 'Você acertou metade, dá pra melhorar!';
-            }else if(score == 3){
-                img.src = './img/score-alto.jpg';
-                h1.innerHTML = 'Quase lá, o Rock Lee está animado pra te ver tentar de novo!';
-            }else if(score == 4){
-                img.src = './img/score-max.jpg';
-                h1.innerHTML = 'Parabéns, você deixou o Naruto orgulhoso!';
-            }
-            nextBtn.style.display = "block";
-            nextBtn.children[0].innerHTML = 'Recomeçar Quiz';
-        }
-    }else{
-        startQuiz()
+    if(checks.length == questions.length){
+        reset();
+        quizElement.classList.add("flex");
+        app.classList.add("appPadding");
+        questionElement.innerHTML = `Você acertou ${score}/4 das questões.`;
+        if(score <=1 ){
+            img.src = './img/score-baixo.jpg';
+            h1.innerHTML = 'Errou feio, tente novamente!';
+        }else if(score == 2){
+            img.src = './img/score-metade.png';
+            h1.innerHTML = 'Você acertou metade, dá pra melhorar!';
+        }else if(score == 3){
+            img.src = './img/score-alto.jpg';
+            h1.innerHTML = 'Quase lá, o Rock Lee está animado pra te ver tentar de novo!';
+        }else if(score == 4){
+            img.src = './img/score-max.jpg';
+            h1.innerHTML = 'Parabéns, você deixou o Naruto orgulhoso!';
+        };
+        const btnRestart = document.createElement("button");
+        const span = document.createElement("span");
+        btnRestart.setAttribute("id", "btn-restart");
+        btnRestart.setAttribute("class", "next-btn");
+        span.innerHTML = 'Recomeçando quiz'
+        btnRestart.appendChild(span);
+        btnRestart.style.display = 'block';
+        quizElement.appendChild(btnRestart);
+
+        // nextBtn.children[0].innerHTML = 'Recomeçar Quiz';
+        recomecandoQuiz(btnRestart);
+    }else if(checks.length < questions.length){
+        showQuestion();
+        console.log(checks.length);
     }
 });
+
+const recomecandoQuiz = (btn) => {
+    btn.addEventListener("click", ()=>{
+        btn.style.display = 'none';
+        startQuiz();
+    });
+}
 
 const reset = () => {
     nextBtn.style.display = 'none';
@@ -141,4 +189,4 @@ const reset = () => {
     };
 }
 
-startQuiz()
+startQuiz();

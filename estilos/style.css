@@ -309,7 +309,7 @@ button:hover::before {
 
 @media screen and (max-height: 685px){
     body{
-        height: 120vh;
+        height: 100vh;
     }
 
     .quiz h2 {
@@ -318,9 +318,6 @@ button:hover::before {
 }
 
 @media screen and (max-height: 680px){
-    body{
-        height: 120vh;
-    }
 
     .app h1{
         padding-bottom: 0px;

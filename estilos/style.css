@@ -26,11 +26,10 @@ body{
 }
 
 .app{
-    background-color: #00000058;
+    background-color: #00000091;
     padding: 30px;
     height: 95vh;
     border-radius: 10px;
-
     width: 90%;
     max-width: 700px;
     margin: auto;

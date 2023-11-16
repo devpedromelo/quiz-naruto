@@ -26,7 +26,7 @@ body{
 }
 
 .app{
-    background-color: #00000091;
+    background-color: #000000c2;;
     padding: 30px;
     height: 95vh;
     border-radius: 10px;
@@ -296,7 +296,7 @@ button:hover::before {
     }
 
     .btn{
-        margin: 10px -7px;
+        margin: 6px -11px;
     }
 }
 
@@ -326,11 +326,13 @@ button:hover::before {
         padding-bottom: 0px;
     }
 
-    .btn{
-        margin: 6px -7px;
-    }
-
     .quiz {
         padding: 0px 0;
+    }
+}
+
+@media screen and (max-height: 637px){
+    .btn {
+        margin: 4px -11px;
     }
 }

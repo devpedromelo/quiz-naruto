@@ -255,7 +255,7 @@ button:hover::before {
     }
 }
 
-@media screen and (min-width: 750px){
+@media screen and (min-width: 990px){
     body{
         background-image: linear-gradient(88deg, #181818, #000000
         ,transparent) ,url(../img/naruto-img.jpg);
